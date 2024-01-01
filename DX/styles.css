@@ -1,0 +1,218 @@
+.dx-scheduler-all-day-appointment .dx-scheduler-appointment-content-details, 
+.dx-scheduler-work-space-month .dx-scheduler-appointment-content-details{
+	display: block;
+}
+body .dx-scheduler-appointment {
+	background-color: #ebf7e4;
+	color: #262c30;
+}
+.dx-scheduler-appointment-title {
+    font-weight: 700;
+    color: #262c30;
+    font-size: .875rem;
+    max-width: 150px;
+}
+.dx-scheduler-appointment-content-date {
+	opacity: 1;
+}
+.dx-scheduler-work-space-month .dx-scheduler-date-table-cell,
+.dx-scheduler-timeline-week .dx-scheduler-date-table-cell,
+.dx-scheduler-timeline-day .dx-scheduler-date-table-cell{
+	position: relative;
+}
+.dx-scheduler-work-space-month .dx-scheduler-date-table-cell:hover:after,
+.dx-scheduler-timeline-week .dx-scheduler-date-table-cell:hover:after,
+.dx-scheduler-timeline-day .dx-scheduler-date-table-cell:hover:after {
+    content: "+";
+    font-size: 29px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    text-align: center;
+    top: 0;
+    position: absolute;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+body .dx-scheduler-work-space-month .dx-scheduler-date-table-cell .dx-scheduler-date-table-cell-text {
+    color: #475056;
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5rem;
+    padding: 0 8px;
+}
+body .dx-scheduler-all-day-appointment, 
+.dx-scheduler-timeline .dx-scheduler-appointment, 
+.dx-scheduler-work-space-month .dx-scheduler-appointment,
+.dx-scheduler-all-day-appointment.dx-state-hover.dx-resizable, 
+.dx-scheduler-timeline .dx-scheduler-appointment.dx-state-hover.dx-resizable, 
+.dx-scheduler-work-space-month .dx-scheduler-appointment.dx-state-hover.dx-resizable,
+body .dx-scheduler-appointment,
+body .dx-scheduler-appointment.dx-state-hover.dx-resizable{
+	box-shadow: initial;
+    min-width: 150px;
+}
+body .dx-scheduler-all-day-appointment, 
+.dx-scheduler-timeline .dx-scheduler-appointment,
+body .dx-scheduler-appointment {
+    width: auto !important;
+}
+.dx-scheduler-header {
+    border: none;
+    background-color: transparent;
+}
+.dx-scheduler-appointment-empty .dx-scheduler-appointment-content-details, 
+.dx-scheduler-appointment-empty .dx-scheduler-appointment-recurrence-icon, 
+.dx-scheduler-appointment-empty .dx-scheduler-appointment-title{
+    display: block;
+}
+.dx-scheduler-header .dx-toolbar .dx-toolbar-item-content, 
+.dx-scheduler-header .dx-toolbar .dx-toolbar-menu-container {
+    padding: 9px 0;
+}
+.dx-scheduler-work-space{
+	border-top: 1px solid rgba(221,221,221,.6);
+}
+
+.dx-buttongroup-item.dx-button.dx-button-mode-contained.dx-button-normal.dx-item-selected,body .dx-buttongroup-item.dx-button.dx-button-mode-contained.dx-button-normal.dx-item-selected.dx-state-hover {
+    background-color: #007DB8;
+}
+.dx-buttongroup-item.dx-button.dx-button-mode-contained.dx-button-normal.dx-item-selected, .dx-buttongroup-item.dx-button.dx-button-mode-contained.dx-button-normal.dx-item-selected .dx-icon {
+    color: #fff;
+}
+.dx-scheduler-header .dx-toolbar .dx-toolbar-items-container {
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+.dx-toolbar-after, .dx-toolbar-before, .dx-toolbar-center{
+	position: relative;
+}
+.dx-scheduler-appointment-popup .dx-toolbar-before {
+    display: none;
+}
+body .dx-scheduler-appointment {
+    min-height: 42px;
+}
+.dx-button-mode-contained {
+    color: #475056;
+    background-color: #fff;
+    border-color: #999da1;
+}
+.dx-button-has-text .dx-button-content, 
+.dx-button-has-text .dx-button-content .dx-button-text {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: .875rem;
+}
+.dx-button-has-text .dx-button-content {
+    padding: 0.6875rem 1rem;
+}
+.dx-buttongroup-item.dx-button.dx-button-mode-contained.dx-button-normal.dx-item-selected {
+    background-color: #4ea819;
+    border-color: #4ea819;
+}
+body .dx-buttongroup-item.dx-button.dx-button-mode-contained.dx-button-normal.dx-item-selected.dx-state-hover {
+    background-color: #4a8f21;
+    border-color: #4a8f21;
+}
+/* .dx-calendar-navigator .dx-calendar-caption-button.dx-button .dx-button-content {
+    color: #4ea819;
+} */
+.dx-widget.dx-calendar-navigator .dx-button {
+    border-width: 0;
+}
+.dx-calendar-navigator .dx-calendar-caption-button.dx-button .dx-button-content {
+    color: #475056;
+}
+.dx-calendar-navigator-next-view.dx-button .dx-icon, 
+.dx-calendar-navigator-previous-view.dx-button .dx-icon {
+    color: #000;
+}
+.dx-calendar-cell.dx-calendar-selected-date, 
+.dx-calendar-cell.dx-calendar-selected-date.dx-calendar-today {
+    -webkit-box-shadow: inset 0 0 0 1000px #2693f8 !important;
+    box-shadow: inset 0 0 0 1000px #2693f8 !important;
+}
+.dx-calendar-cell.dx-calendar-selected-date:hover, 
+.dx-calendar-cell.dx-calendar-selected-date.dx-calendar-today:hover {
+    -webkit-box-shadow: inset 0 0 0 1000px #4ea819 !important;
+    box-shadow: inset 0 0 0 1000px #4ea819 !important;
+}
+.dx-scheduler-work-space.dx-scheduler-work-space-month:not(.dx-scheduler-work-space-vertical-grouped) .dx-scheduler-header-panel {
+    border-bottom: 0;
+}
+.dx-scheduler-work-space-month .dx-scheduler-header-panel-cell {
+    border: 0;
+}
+.dx-scheduler-header-panel-cell {
+    color: #70777b;
+    font-weight: 600;
+    font-size: .875rem;
+}
+.dx-scheduler-work-space-month .dx-scheduler-header-panel-cell.dx-scheduler-last-group-cell,
+.dx-scheduler-timeline-week .dx-scheduler-header-panel-cell:nth-of-type(7),
+.dx-scheduler-timeline-week .dx-scheduler-header-panel-cell:nth-of-type(6),
+.dx-scheduler-work-space-month .dx-scheduler-header-panel-cell:nth-of-type(6) {
+    color: #d9534f;
+}
+.dx-scheduler-work-space-month .dx-scheduler-date-table-cell.dx-scheduler-last-group-cell,
+.dx-scheduler-timeline-week .dx-scheduler-date-table-cell:nth-of-type(7),
+.dx-scheduler-timeline-week .dx-scheduler-date-table-cell:nth-of-type(6),
+.dx-scheduler-work-space-month .dx-scheduler-date-table-cell:nth-of-type(6),
+.dx-scheduler-work-space-month .dx-scheduler-date-table-cell.dx-scheduler-date-table-other-month {
+    background-color: #F5F5F6 !important;
+}
+.dx-scheduler-date-table-other-month {
+    opacity: 1;
+}
+.dx-scheduler-date-table-other-month  .dx-scheduler-date-table-cell-text {
+    color: #999DA1 !important;
+}
+.dx-scheduler-timeline-week table.dx-scheduler-header-panel thead tr:nth-of-type(2) {
+    display: none;
+}
+.dx-calendar-body table th {
+    color: #475056;
+    font-size: .75rem;
+    font-weight: 400;
+    text-transform: none;
+}
+.dx-calendar-navigator .dx-button-has-text .dx-button-content .dx-button-text,
+.dx-scheduler-navigator .dx-buttongroup.dx-widget .dx-button-has-text .dx-button-content .dx-button-text {
+    text-transform: none;
+}
+.dx-item.dx-toolbar-item.dx-toolbar-button.dx-scheduler-navigator .dx-scheduler-navigator-previous,
+.dx-item.dx-toolbar-item.dx-toolbar-button.dx-scheduler-navigator .dx-scheduler-navigator-caption,
+.dx-item.dx-toolbar-item.dx-toolbar-button.dx-scheduler-navigator .dx-scheduler-navigator-next {
+    border: 0;
+}
+.dx-item.dx-toolbar-item.dx-toolbar-button.dx-scheduler-navigator .dx-scheduler-navigator-caption {
+    order: 1;
+}
+.dx-item.dx-toolbar-item.dx-toolbar-button.dx-scheduler-navigator .dx-scheduler-navigator-previous {
+    order: 2;
+}
+.dx-item.dx-toolbar-item.dx-toolbar-button.dx-scheduler-navigator .dx-scheduler-navigator-next {
+    order: 3;
+}
+.dx-item.dx-toolbar-item.dx-toolbar-button.dx-scheduler-navigator .dx-scheduler-navigator-caption > div {
+    padding-right: 0;
+    position: relative;
+}
+.dx-item.dx-toolbar-item.dx-toolbar-button.dx-scheduler-navigator .dx-scheduler-navigator-caption > div::after {
+    content: "\f105";
+    display: inline-block;
+    position: absolute;
+    right: 8px;
+    top: 10px;
+    cursor: pointer;
+    color: #70777b;
+}
+.booked-cell {
+    background-color: red;
+}

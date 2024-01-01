@@ -1,0 +1,257 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>JavaScript Scheduler: Switching Day/Week/Month Views</title>
+
+    <style type="text/css">
+      p,
+      body,
+      td {
+        font-family: Tahoma, Arial, Helvetica, sans-serif;
+        font-size: 10pt;
+      }
+      body {
+        padding: 0px;
+        margin: 0px;
+        background-color: #ffffff;
+      }
+      a {
+        color: #1155a3;
+      }
+      .space {
+        margin: 10px 0px 10px 0px;
+      }
+      .header {
+        background: #003267;
+        background: linear-gradient(
+          to right,
+          #011329 0%,
+          #00639e 44%,
+          #011329 100%
+        );
+        padding: 20px 10px;
+        color: white;
+        box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.75);
+      }
+      .header a {
+        color: white;
+      }
+      .header h1 a {
+        text-decoration: none;
+      }
+      .header h1 {
+        padding: 0px;
+        margin: 0px;
+      }
+      .main {
+        padding: 10px;
+        margin-top: 10px;
+      }
+      .generated {
+        color: #999;
+      }
+      .generated a {
+        color: #999;
+      }
+    </style>
+
+    <style>
+      .toolbar {
+        margin: 10px 0px;
+      }
+
+      .toolbar button {
+        background-color: #f3f3f3;
+        border: 1px solid #c0c0c0;
+        color: #333;
+        padding: 8px 0px;
+        width: 100px;
+        border-radius: 2px;
+        cursor: pointer;
+        margin-right: 5px;
+      }
+    </style>
+
+    <!-- DayPilot library -->
+    <script src="js/daypilot/daypilot-all.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div style="">
+        <div id="nav"></div>
+      </div>
+      <div class="toolbar">
+        <button id="button-day">Day</button>
+        <button id="button-week">Week</button>
+        <button id="button-month">Month</button>
+      </div>
+      <div id="dp"></div>
+    </div>
+
+    <script>
+      var nav = new DayPilot.Navigator("nav");
+      nav.showMonths = 3;
+      nav.skipMonths = 3;
+      nav.init();
+
+      var dp = new DayPilot.Scheduler("dp", {
+        timeHeaders: [{ groupBy: "Month" }, { groupBy: "Day", format: "d" }],
+        scale: "Day",
+        days: DayPilot.Date.today().daysInMonth(),
+        startDate: DayPilot.Date.today().firstDayOfMonth(),
+        timeRangeSelectedHandling: "Enabled",
+        onTimeRangeSelected: function (args) {
+          var dp = this;
+          DayPilot.Modal.prompt("Create a new event:", "Event 1").then(
+            function (modal) {
+              dp.clearSelection();
+              if (!modal.result) {
+                return;
+              }
+              dp.events.add(
+                new DayPilot.Event({
+                  start: args.start,
+                  end: args.end,
+                  id: DayPilot.guid(),
+                  resource: args.resource,
+                  text: modal.result,
+                })
+              );
+            }
+          );
+        },
+        onEventClick: function (args) {
+          var form = [
+            { name: "Name", id: "text" },
+            { name: "Start", id: "start", dateFormat: "MMMM d, yyyy" },
+            { name: "End", id: "end", dateFormat: "MMMM d, yyyy" },
+          ];
+
+          var data = args.e.data;
+
+          var options = {
+            autoFocus: true,
+          };
+
+          DayPilot.Modal.form(form, data, options).then(function (margs) {
+            console.log("modal", margs);
+
+            if (!margs.canceled) {
+              dp.events.update(margs.result);
+            }
+          });
+        },
+        zoomLevels: [
+          {
+            name: "Day",
+            properties: {
+              scale: "CellDuration",
+              cellDuration: 15,
+              cellWidth: 40,
+              timeHeaders: [
+                { groupBy: "Day", format: "dddd MMMM d, yyyy" },
+                { groupBy: "Hour" },
+                { groupBy: "Cell" },
+              ],
+              startDate: function (args) {
+                return args.date.getDatePart();
+              },
+              days: function () {
+                return 1;
+              },
+            },
+          },
+          {
+            name: "Week",
+            properties: {
+              scale: "Hour",
+              cellWidth: 40,
+              timeHeaders: [
+                { groupBy: "Month" },
+                { groupBy: "Day", format: "dddd d" },
+                { groupBy: "Hour" },
+              ],
+              startDate: function (args) {
+                return args.date.firstDayOfWeek();
+              },
+              days: function () {
+                return 7;
+              },
+            },
+          },
+          {
+            name: "Month",
+            properties: {
+              scale: "CellDuration",
+              cellDuration: 720,
+              cellWidth: 40,
+              timeHeaders: [
+                { groupBy: "Month" },
+                { groupBy: "Day", format: "ddd d" },
+                { groupBy: "Cell", format: "tt" },
+              ],
+              startDate: function (args) {
+                return args.date.firstDayOfMonth();
+              },
+              days: function (args) {
+                return args.date.daysInMonth();
+              },
+            },
+          },
+        ],
+        treeEnabled: true,
+      });
+      dp.resources = [
+        { name: "Resource 1", id: "R1" },
+        { name: "Resource 2", id: "R2" },
+        { name: "Resource 3", id: "R3" },
+        { name: "Resource 4", id: "R4" },
+        { name: "Resource 5", id: "R5" },
+        { name: "Resource 6", id: "R6" },
+        { name: "Resource 7", id: "R7" },
+        { name: "Resource 8", id: "R8" },
+        { name: "Resource 9", id: "R9" },
+      ];
+      dp.events.list = [];
+      dp.zoom.setActive(0);
+      dp.init();
+
+      var switcher = new DayPilot.Switcher({
+        triggers: [
+          { id: "buttonDay", view: day },
+          { id: "buttonWeek", view: week },
+          { id: "buttonMonth", view: month },
+        ],
+        navigator: nav,
+        selectedClass: "selected-button",
+        onChanged: function (args) {
+          console.log("onChanged fired");
+        },
+      });
+
+      switcher.select("buttonWeek");
+    </script>
+
+    <script>
+      var elements = {
+        day: document.getElementById("button-day"),
+        week: document.getElementById("button-week"),
+        month: document.getElementById("button-month"),
+      };
+
+      elements.day.addEventListener("click", function (ev) {
+        dp.zoom.setActive(0);
+      });
+
+      elements.week.addEventListener("click", function (ev) {
+        dp.zoom.setActive(1);
+      });
+
+      elements.month.addEventListener("click", function (ev) {
+        dp.zoom.setActive(2);
+      });
+    </script>
+  </body>
+</html>
